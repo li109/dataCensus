@@ -129,7 +129,7 @@
 <script>
 
 export default {
-    name: 'MunicipalUnitsBase',
+    name: 'UnitsBase',
     data() {
         return {
         }

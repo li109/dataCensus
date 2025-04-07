@@ -1,13 +1,13 @@
 <template>
     <div class="app-container">
-        District456
+        123
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'DistrictUnitsTable',
+    name: 'TradeTable',
     data() {
         return {
         }
@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/styles/variables.scss";
+
 .app-container {
+    font-size: 12px;
+    color: $tableTextColor;
 }
 </style>

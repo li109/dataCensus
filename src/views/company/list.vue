@@ -61,16 +61,15 @@ export default {
                 { label: '南山区', value: '3' }
             ],
             tableData: [
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 1 },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 2 },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
-                { unitName: '深圳市政数局', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08' },
+                { unitName: '市直单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 1 },
+                { unitName: '区级单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 2 },
+                { unitName: '交易机构', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 3 },
+                { unitName: '国家实验室', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 4 },
+                { unitName: '数据服务方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 5 },
+                { unitName: '数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 6 },
+                { unitName: '数据服务方、数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 7 },
+                { unitName: '中央企业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 8 },
+                { unitName: '重点行业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 9 },
             ],
             page: {
                 page: 1,
@@ -105,40 +104,88 @@ export default {
             this.multipleSelection = val;
         },
         openDetails(type) {
-            const tabsToClose = this.$store.state.tagsView.visitedViews.filter(view => view.path.includes('/municipal') || view.path.includes('/district'));
+            const pathList = [
+                '/units',
+                '/trade',
+                '/lab',
+                '/service',
+            ];
+            const tabsToClose = this.$store.state.tagsView.visitedViews.filter(view => {
+                return pathList.some(path => {
+                    return view.path.includes(path)
+                })
+            });
             tabsToClose.forEach(tab => {
                 this.$store.dispatch('tagsView/delView', tab);
             });
+
+            let router1 = {}
+            let router2 = {}
+
             if (type == 1) {
-                const municipalRoute1 = {
-                    path: '/municipal/base',
-                    name: 'MunicipalBase',
+                router1 = {
+                    path: '/units/base',
+                    name: 'UnitsBase',
                     meta: { title: '公共数据调查基本情况', noCache: true }
                 };
-                const municipalRoute2 = {
-                    path: '/municipal/table',
-                    name: 'MunicipalTable',
+                router2 = {
+                    path: '/units/table',
+                    name: 'UnitsTable',
                     meta: { title: '市级政府公共数据资源调查表', noCache: true }
                 };
-                this.$store.dispatch('tagsView/addView', municipalRoute1);
-                this.$store.dispatch('tagsView/addView', municipalRoute2);
-                this.$router.push(municipalRoute1.path);
             }
             if (type == 2) {
-                const districtRoute1 = {
-                    path: '/district/base',
-                    name: 'DistrictBase',
+                router1 = {
+                    path: '/units/base',
+                    name: 'UnitsBase',
                     meta: { title: '公共数据调查基本情况', noCache: true }
                 };
-                const districtRoute2 = {
-                    path: '/district/table',
-                    name: 'DistrictTable',
-                    meta: { title: '市级政府公共数据资源调查表', noCache: true }
+                router2 = {
+                    path: '/units/table',
+                    name: 'UnitsTable',
+                    meta: { title: '区级政府公共数据资源调查表', noCache: true }
                 };
-                this.$store.dispatch('tagsView/addView', districtRoute1);
-                this.$store.dispatch('tagsView/addView', districtRoute2);
-                this.$router.push(districtRoute1.path);
             }
+            if (type == 3) {
+                router1 = {
+                    path: '/trade/base',
+                    name: 'TradeBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/trade/table',
+                    name: 'TradeTable',
+                    meta: { title: '数据交易机构数据资源调查表', noCache: true }
+                };
+            }
+            if (type == 4) {
+                router1 = {
+                    path: '/lab/base',
+                    name: 'LabBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/lab/table',
+                    name: 'LabTable',
+                    meta: { title: '国家实验室及全国重点实验室数据资源调查表', noCache: true }
+                };
+            }
+            if (type == 5) {
+                router1 = {
+                    path: '/service/base',
+                    name: 'ServiceBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/service/table',
+                    name: 'ServiceTable',
+                    meta: { title: '数据服务方数据资源调查表', noCache: true }
+                };
+            }
+
+            this.$store.dispatch('tagsView/addView', router1);
+            this.$store.dispatch('tagsView/addView', router2);
+            this.$router.push(router1.path);
         }
     }
 }

@@ -45,46 +45,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/municipal',
-    component: Layout,
-    hidden: true,
-    redirect: '/municipal/base',
-    children: [
-      {
-        path: 'base',
-        component: (resolve) => require(['@/views/company/details/municipalUnits/base'], resolve),
-        name: 'MunicipalBase',
-        meta: { title: '公共数据调查基本情况', noCache: true }
-      },
-      {
-        path: 'table',
-        component: (resolve) => require(['@/views/company/details/municipalUnits/table'], resolve),
-        name: 'MunicipalTable',
-        meta: { title: '市级政府公共数据资源调查表', noCache: true }
-      }
-    ]
-  },
-  {
-    path: '/district',
-    component: Layout,
-    hidden: true,
-    redirect: '/district/base',
-    children: [
-      {
-        path: 'base',
-        component: (resolve) => require(['@/views/company/details/districtUnits/base'], resolve),
-        name: 'DistrictBase',
-        meta: { title: '公共数据调查基本情况', noCache: true }
-      },
-      {
-        path: 'table',
-        component: (resolve) => require(['@/views/company/details/districtUnits/table'], resolve),
-        name: 'DistrictTable',
-        meta: { title: '区级政府公共数据资源调查表', noCache: true }
-      }
-    ]
-  },
-  {
     path: '/user',
     component: Layout,
     hidden: true,
@@ -97,7 +57,87 @@ export const constantRouterMap = [
         meta: { title: '个人中心' }
       }
     ]
-  }
+  },
+  {
+    path: '/units',
+    component: Layout,
+    hidden: true,
+    redirect: '/units/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/units/base'], resolve),
+        name: 'UnitsBase',
+        meta: { title: '公共数据调查基本情况', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/units/table'], resolve),
+        name: 'UnitsTable',
+        meta: { title: '市级政府公共数据资源调查表', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/trade',
+    component: Layout,
+    hidden: true,
+    redirect: '/trade/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/trade/base'], resolve),
+        name: 'TradeBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/trade/table'], resolve),
+        name: 'TradeTable',
+        meta: { title: '数据交易机构数据资源调查表', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/lab',
+    component: Layout,
+    hidden: true,
+    redirect: '/lab/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/lab/base'], resolve),
+        name: 'LabBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/lab/table'], resolve),
+        name: 'LabTable',
+        meta: { title: '国家实验室及全国重点实验室数据资源调查表', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/service',
+    component: Layout,
+    hidden: true,
+    redirect: '/service/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/service/base'], resolve),
+        name: 'ServiceBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/service/table'], resolve),
+        name: 'ServiceTable',
+        meta: { title: '数据服务方数据资源调查表', noCache: true }
+      }
+    ]
+  },
 ]
 
 export default new Router({
