@@ -1,29 +1,16 @@
 <template>
     <div class="app-container">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane label="设备1" name="1"></el-tab-pane>
+            <el-tab-pane label="设备2" name="2"></el-tab-pane>
+            <el-tab-pane label="设备3" name="3"></el-tab-pane>
+            <el-tab-pane label="设备4" name="4"></el-tab-pane>
+        </el-tabs>
+
         <div class="list-container">
             <div class="list-item">
-                <div class="item-title">企业服务的行业（多选）</div>
-                <div class="item-content">【农、林、牧、渔业】【制造业】【电力、热力、燃气及水生产和供应业】【交通运输、仓储和邮政业】</div>
-            </div>
-            <div class="list-item">
-                <div class="item-title">企业是否为平台企业</div>
-                <div class="item-content"></div>
-            </div>
-            <div class="list-item">
-                <div class="item-title">企业是否为高新技术企业</div>
-                <div class="item-content"></div>
-            </div>
-            <div class="list-item">
-                <div class="item-title">企业数据产生主要在（多选）</div>
-                <div class="item-content"></div>
-            </div>
-            <div class="list-item">
-                <div class="item-title">企业数据存储方式主要是（多选）</div>
-                <div class="item-content"></div>
-            </div>
-            <div class="list-item">
-                <div class="item-title">企业存储数据主要在（多选）（最多两项）</div>
-                <div class="item-content"></div>
+                <div class="item-title">设备名称</div>
+                <div class="item-content">XXXXXX设备</div>
             </div>
         </div>
 
@@ -35,101 +22,234 @@
             <div class="right">预估值（2026年）</div>
         </div>
         <div class="item-container">
-            <div class="left-box">数据汇聚</div>
+            <div class="left-box">产品销售及保有情况</div>
             <div class="right-box">
                 <div class="item">
-                    <div class="item-title">设备设施采集数据总量（TB）</div>
+                    <div class="item-title">产品全国销售量（台）</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                 </div>
                 <div class="item">
-                    <div class="item-title">系统/软件生产数据总量（TB）</div>
+                    <div class="item-title third">北京市销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title">用户上传数据总量（TB）</div>
+                    <div class="item-title third">天津市销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title">数据存储总空间（TB）</div>
+                    <div class="item-title third">河北省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title">数据存储总量（TB）</div>
+                    <div class="item-title third">山西省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">原始数据存储总量（TB）</div>
+                    <div class="item-title third">内蒙古自治区销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">衍生数据存储总量（TB）</div>
+                    <div class="item-title third">辽宁省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">备份数据存储总量（TB）</div>
+                    <div class="item-title third">吉林省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">结构化数据存储总量（TB）</div>
+                    <div class="item-title third">黑龙江省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">图片类数据存储总量（TB）</div>
+                    <div class="item-title third">上海市销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">视频类数据存储总量（TB）</div>
+                    <div class="item-title third">江苏省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title">云存储总量（TB）</div>
+                    <div class="item-title third">浙江省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">公有云存储总量（TB）</div>
+                    <div class="item-title third">安徽省销售量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title">冷数据占比（%）</div>
+                    <div class="item-title third">福建省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">江西省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">山东省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">河南省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">湖北省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">湖南省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">广东省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">广西壮族自治区销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">海南省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">重庆市销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">四川省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">贵州省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">云南省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">西藏自治区销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">陕西省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">甘肃省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">青海省销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">宁夏回族自治区销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title third">新疆维吾尔自治区销售量（台）</div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                    <div class="right-item"></div>
+                </div>
+                <div class="item">
+                    <div class="item-title">产品全国保有量（台）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
@@ -138,157 +258,17 @@
             </div>
         </div>
         <div class="item-container">
-            <div class="left-box">数据开发</div>
+            <div class="left-box">产品数据生产情况</div>
             <div class="right-box">
                 <div class="item">
-                    <div class="item-title">数据集数量（个）</div>
+                    <div class="item-title">产品满负荷运行日均产生数据总量（TB）</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                 </div>
                 <div class="item">
-                    <div class="item-title">数据集数据总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">接入国外数据集数据总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">用于AI技术研发的数据总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">数据开发工具数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">使用频率（次/周）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">二次开发次数（次）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">通用大模型数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">使用频率（次/周）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">二次开发次数（次）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">行业大模型数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">使用频率（次/周）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">垂直大模型数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">使用频率（次/周）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">企业算力规模（TFLOPS）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">智能计算服务器占比（%）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">开发者数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">日活跃数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">企业AI技术研发者数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">数据技术投入（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">软件系统投入（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">AI技术投入（万元）</div>
+                    <div class="item-title">产品出厂后年均运行时长（天）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
@@ -297,87 +277,17 @@
             </div>
         </div>
         <div class="item-container">
-            <div class="left-box">数据流通</div>
+            <div class="left-box">产品数据存储空间情况</div>
             <div class="right-box">
                 <div class="item">
-                    <div class="item-title">与外部交互的数据总量（TB）</div>
+                    <div class="item-title">产品平均存储空间（TB）</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">政府及公共服务机构数据交互量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">数据交易机构数据交互量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">其他行业企业或第三方服务平台数据交互量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">接入外部数据总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">购买数据总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">购买数据费用（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">数据流出总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">数据有偿提供总量（TB）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">数据有偿提供收入（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">数据流通审批总数（件）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">单次数据流通审批时长（天）</div>
+                    <div class="item-title">产品平均存储空间利用率（%）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
@@ -386,94 +296,24 @@
             </div>
         </div>
         <div class="item-container">
-            <div class="left-box">数据服务</div>
+            <div class="left-box">产品性能与服务</div>
             <div class="right-box">
                 <div class="item">
-                    <div class="item-title">与数据产品及服务收入（万元）</div>
+                    <div class="item-title">主要产品平均使用年限（年）</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                     <div class="right-item">1</div>
                 </div>
                 <div class="item">
-                    <div class="item-title">数据产品及服务数量（个）</div>
+                    <div class="item-title">具备联网功能的产品比例（%）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                 </div>
                 <div class="item">
-                    <div class="item-title third">用户数量（个） </div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">SaaS数据产品及服务数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">AI产品数量（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">APP累计下载量（次）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">网页端月访问量（次）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">APP日活跃用户数（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">网页端月独立访客数（个）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title">数据资源入表金额（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">外购数据资源入表金额（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">自行开发数据资源入表金额（万元）</div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                    <div class="right-item"></div>
-                </div>
-                <div class="item">
-                    <div class="item-title third">其他数据资源入表金额（万元）</div>
+                    <div class="item-title">能够提供远程运维服务的产品比例（%）</div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
                     <div class="right-item"></div>
@@ -487,14 +327,18 @@
 <script>
 
 export default {
-    name: 'ServiceTable',
+    name: 'ApplyOther',
     data() {
         return {
+            activeName: '1'
         }
     },
     created() {
     },
     methods: {
+        handleClick(tab, event) {
+            console.log(tab, event);
+        }
     }
 }
 </script>
@@ -645,6 +489,10 @@ export default {
                 box-sizing: border-box;
             }
         }
+    }
+
+    .el-tabs {
+        margin-bottom: 2px;
     }
 }
 </style>

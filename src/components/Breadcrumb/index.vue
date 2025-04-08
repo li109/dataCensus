@@ -41,6 +41,8 @@ export default {
       }
 
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      // 新增代码
+      this.levelList.shift()
     },
     isDashboard(route) {
       const name = route && route.name

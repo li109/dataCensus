@@ -22,7 +22,7 @@
                 <div class="item-content"></div>
             </div>
             <div class="table-item">
-                <div class="item-title">数据服务企业类型（多选）</div>
+                <div class="item-title">是否生产如下设备（多选）</div>
                 <div class="item-content"></div>
             </div>
             <div class="table-item">
@@ -160,7 +160,7 @@
 <script>
 
 export default {
-    name: 'ServiceBase',
+    name: 'ApplyBase',
     data() {
         return {
         }

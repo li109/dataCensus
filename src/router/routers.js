@@ -31,19 +31,19 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: (resolve) => require(['@/views/home'], resolve),
-        name: 'Dashboard',
-        meta: { title: '首页', icon: 'index', affix: true, noCache: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: (resolve) => require(['@/views/home'], resolve),
+  //       name: 'Dashboard',
+  //       meta: { title: '首页', icon: 'index', affix: true, noCache: true }
+  //     }
+  //   ]
+  // },
   {
     path: '/user',
     component: Layout,
@@ -55,6 +55,19 @@ export const constantRouterMap = [
         component: (resolve) => require(['@/views/system/user/center'], resolve),
         name: '个人中心',
         meta: { title: '个人中心' }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/list',
+    children: [
+      {
+        path: 'list',
+        component: (resolve) => require(['@/views/company/list'], resolve),
+        name: 'List',
+        meta: { title: '数据资源调查表', icon: 'index', affix: true, noCache: true }
       }
     ]
   },
@@ -135,6 +148,38 @@ export const constantRouterMap = [
         component: (resolve) => require(['@/views/company/details/service/table'], resolve),
         name: 'ServiceTable',
         meta: { title: '数据服务方数据资源调查表', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/apply',
+    component: Layout,
+    hidden: true,
+    redirect: '/apply/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/apply/base'], resolve),
+        name: 'ApplyBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'item/:id',
+        component: (resolve) => require(['@/views/company/details/apply/item'], resolve),
+        name: 'ApplyItem',
+        meta: { title: '数据资源调查', noCache: true }
+      },
+      {
+        path: 'other',
+        component: (resolve) => require(['@/views/company/details/apply/other'], resolve),
+        name: 'ApplyOther',
+        meta: { title: '其他数据资源调查', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/apply/table'], resolve),
+        name: 'ApplyTable',
+        meta: { title: '数据应用方数据资源调查表', noCache: true }
       }
     ]
   },

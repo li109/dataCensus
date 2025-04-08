@@ -4,7 +4,7 @@
             <div class="condition">
                 <div class="item">
                     <span class="text">上报方:</span>
-                    <el-select v-model="searchForm.report" size="mini" placeholder="请选择上报方" style="width: 200px;"
+                    <el-select v-model="searchForm.area" size="mini" placeholder="请选择上报方" style="width: 200px;"
                         clearable>
                         <el-option v-for="item of reportList" :index="item.label" :label="item.label"
                             :value="item.value" />
@@ -12,7 +12,7 @@
                 </div>
                 <div class="item">
                     <span class="text">单位名称:</span>
-                    <el-input v-model="searchForm.unit" size="mini" placeholder="请输入单位名称" style="width: 200px;"
+                    <el-input v-model="searchForm.unitName" size="mini" placeholder="请输入单位名称" style="width: 200px;"
                         clearable />
                 </div>
             </div>
@@ -44,14 +44,14 @@
 </template>
 
 <script>
-
+import { getTableList } from '@/api/company'
 export default {
     name: 'Questionnaire',
     data() {
         return {
             searchForm: {
-                report: '0',
-                unit: ''
+                area: '',
+                unitName: ''
             },
             multipleSelection: [],
             reportList: [
@@ -72,32 +72,35 @@ export default {
                 { unitName: '重点行业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 9 },
             ],
             page: {
-                page: 1,
-                size: 10,
+                pageNo: 1,
+                pageSize: 10,
                 total: 0
             },
         }
     },
     created() {
-        this.getList()
+        // this.getList()
     },
     methods: {
         getList() {
-            // getOrderList(this.searchNum, this.page.page, this.page.size).then(res => {
-            //   if (res && res.content) {
-            //     this.tableData = res.content
-            //     this.page.total = res.totalElements
-            //     this.page.page = res.currPage
-            //     this.page.size = res.pageSize
-            //   }
-            // })
+            let data = {
+                area: this.searchForm.area,
+                unitName: this.searchForm.unitName,
+                pageNo: this.page.pageNo,
+                pageSize: this.page.pageSize
+            }
+            getTableList(data).then(res => {
+                console.log(res, 'list')
+                // this.tableData = res.data.list
+                // this.page.total = res.data.total
+            })
         },
         handleSizeChange(val) {
-            this.page.size = val
+            this.page.pageSize = val
             this.getList()
         },
         handleCurrentChange(val) {
-            this.page.page = val
+            this.page.pageNo = val
             this.getList()
         },
         handleSelectionChange(val) {
@@ -109,6 +112,7 @@ export default {
                 '/trade',
                 '/lab',
                 '/service',
+                '/apply',
             ];
             const tabsToClose = this.$store.state.tagsView.visitedViews.filter(view => {
                 return pathList.some(path => {
@@ -183,8 +187,43 @@ export default {
                 };
             }
 
+            if (type == 6) {
+                router1 = {
+                    path: '/apply/base',
+                    name: 'ApplyBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/apply/table',
+                    name: 'ApplyTable',
+                    meta: { title: '数据应用方数据资源调查表', noCache: true }
+                };
+            }
+
             this.$store.dispatch('tagsView/addView', router1);
             this.$store.dispatch('tagsView/addView', router2);
+
+            if (type == 6) {
+                const router3 = {
+                    path: '/apply/item/1',
+                    name: 'ApplyItem',
+                    meta: { title: '传感器数据资源调查', noCache: true }
+                };
+                const router4 = {
+                    path: '/apply/item/2',
+                    name: 'ApplyItem',
+                    meta: { title: '仪器仪表数据资源调查', noCache: true }
+                };
+                const router5 = {
+                    path: '/apply/other',
+                    name: 'ApplyOther',
+                    meta: { title: '其他数据资源调查', noCache: true }
+                };
+                this.$store.dispatch('tagsView/addView', router3);
+                this.$store.dispatch('tagsView/addView', router4);
+                this.$store.dispatch('tagsView/addView', router5);
+            }
+
             this.$router.push(router1.path);
         }
     }
