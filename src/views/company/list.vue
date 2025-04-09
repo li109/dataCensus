@@ -6,7 +6,7 @@
                     <span class="text">上报方:</span>
                     <el-select v-model="searchForm.area" size="mini" placeholder="请选择上报方" style="width: 200px;"
                         clearable>
-                        <el-option v-for="item of reportList" :index="item.label" :label="item.label"
+                        <el-option v-for="item of areaList" :index="item.label" :label="item.label"
                             :value="item.value" />
                     </el-select>
                 </div>
@@ -28,11 +28,11 @@
             <el-table-column type="selection" width="55" />
             <el-table-column type="index" label="序号" width="50" />
             <el-table-column prop="unitName" label="单位名称" />
-            <el-table-column prop="reportParty" label="上报方" />
-            <el-table-column prop="reportTime" label="上报时间" width="150px" />
+            <el-table-column prop="area" label="上报方" />
+            <el-table-column prop="createTime" label="上报时间" width="150px" />
             <el-table-column label="操作" width="110px" align="center" fixed="right">
                 <template slot-scope="scope">
-                    <span class="click-btn" @click="openDetails(scope.row.type)">查看</span>
+                    <span class="click-btn" @click="openDetails(scope.row)">查看</span>
                     <span class="click-btn">导出数据</span>
                 </template>
             </el-table-column>
@@ -54,22 +54,31 @@ export default {
                 unitName: ''
             },
             multipleSelection: [],
-            reportList: [
-                { label: '全部', value: '0' },
-                { label: '深圳市', value: '1' },
-                { label: '福田区', value: '2' },
-                { label: '南山区', value: '3' }
+            areaList: [
+                { label: '全部', value: '' },
+                { label: '深圳市', value: '深圳市' },
+                { label: '福田区', value: '福田区' },
+                { label: '南山区', value: '南山区' },
+                { label: '罗湖区', value: '罗湖区' },
+                { label: '宝安区', value: '宝安区' },
+                { label: '龙岗区', value: '龙岗区' },
+                { label: '龙华区', value: '龙华区' },
+                { label: '光明区', value: '光明区' },
+                { label: '盐田区', value: '盐田区' },
+                { label: '坪山区', value: '坪山区' },
+                { label: '大鹏新区', value: '大鹏新区' },
+                { label: '深汕特别合作区', value: '深汕特别合作区' },
             ],
             tableData: [
-                { unitName: '市直单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 1 },
-                { unitName: '区级单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 2 },
-                { unitName: '交易机构', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 3 },
-                { unitName: '国家实验室', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 4 },
-                { unitName: '数据服务方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 5 },
-                { unitName: '数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 6 },
-                { unitName: '数据服务方、数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 7 },
-                { unitName: '中央企业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 8 },
-                { unitName: '重点行业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 9 },
+                // { unitName: '市直单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 1 },
+                // { unitName: '区级单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 2 },
+                // { unitName: '交易机构', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 3 },
+                // { unitName: '国家实验室', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 4 },
+                // { unitName: '数据服务方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 5 },
+                // { unitName: '数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 6 },
+                // { unitName: '数据服务方、数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 7 },
+                // { unitName: '中央企业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 8 },
+                // { unitName: '重点行业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 9 },
             ],
             page: {
                 pageNo: 1,
@@ -79,20 +88,23 @@ export default {
         }
     },
     created() {
-        // this.getList()
+        this.getList()
     },
     methods: {
         getList() {
             let data = {
                 area: this.searchForm.area,
                 unitName: this.searchForm.unitName,
-                pageNo: this.page.pageNo,
-                pageSize: this.page.pageSize
+                page: {
+                    pageNo: this.page.pageNo,
+                    pageSize: this.page.pageSize
+                }
             }
             getTableList(data).then(res => {
-                console.log(res, 'list')
-                // this.tableData = res.data.list
-                // this.page.total = res.data.total
+                if(res && res.rows) {
+                    this.tableData = res.rows
+                    this.page.total = res.total
+                }
             })
         },
         handleSizeChange(val) {
@@ -106,7 +118,11 @@ export default {
         handleSelectionChange(val) {
             this.multipleSelection = val;
         },
-        openDetails(type) {
+        openDetails(row) {
+            const unitType = row.unitType || ''
+            const usciCode = row.usciCode || ''
+            const type = row.type || ''
+
             const pathList = [
                 '/units',
                 '/trade',
@@ -126,19 +142,21 @@ export default {
             let router1 = {}
             let router2 = {}
 
-            if (type == 1) {
+            if (unitType === '市级单位' || unitType === '区级单位') {
                 router1 = {
                     path: '/units/base',
-                    name: 'UnitsBase',
-                    meta: { title: '公共数据调查基本情况', noCache: true }
+                    name: 'Base',
+                    meta: { title: '公共数据调查基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/units/table',
                     name: 'UnitsTable',
-                    meta: { title: '市级政府公共数据资源调查表', noCache: true }
+                    meta: { title: '市级政府公共数据资源调查表', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
             }
-            if (type == 2) {
+            if (unitType == 2) {
                 router1 = {
                     path: '/units/base',
                     name: 'UnitsBase',
@@ -150,7 +168,7 @@ export default {
                     meta: { title: '区级政府公共数据资源调查表', noCache: true }
                 };
             }
-            if (type == 3) {
+            if (unitType == 3) {
                 router1 = {
                     path: '/trade/base',
                     name: 'TradeBase',
@@ -162,7 +180,7 @@ export default {
                     meta: { title: '数据交易机构数据资源调查表', noCache: true }
                 };
             }
-            if (type == 4) {
+            if (unitType == 4) {
                 router1 = {
                     path: '/lab/base',
                     name: 'LabBase',
@@ -174,7 +192,7 @@ export default {
                     meta: { title: '国家实验室及全国重点实验室数据资源调查表', noCache: true }
                 };
             }
-            if (type == 5) {
+            if (unitType == 5) {
                 router1 = {
                     path: '/service/base',
                     name: 'ServiceBase',
@@ -187,7 +205,7 @@ export default {
                 };
             }
 
-            if (type == 6) {
+            if (unitType == 6) {
                 router1 = {
                     path: '/apply/base',
                     name: 'ApplyBase',
@@ -203,7 +221,7 @@ export default {
             this.$store.dispatch('tagsView/addView', router1);
             this.$store.dispatch('tagsView/addView', router2);
 
-            if (type == 6) {
+            if (unitType == 6) {
                 const router3 = {
                     path: '/apply/item/1',
                     name: 'ApplyItem',
@@ -224,7 +242,7 @@ export default {
                 this.$store.dispatch('tagsView/addView', router5);
             }
 
-            this.$router.push(router1.path);
+            this.$router.push(router1);
         }
     }
 }

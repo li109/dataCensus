@@ -79,8 +79,8 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/units/base'], resolve),
-        name: 'UnitsBase',
+        component: (resolve) => require(['@/views/company/base'], resolve),
+        name: 'Base',
         meta: { title: '公共数据调查基本情况', noCache: true }
       },
       {

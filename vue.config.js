@@ -40,6 +40,13 @@ module.exports = {
         pathRewrite: {
           '^/auth': 'auth'
         }
+      },
+      '/dataFillingSurvey': {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/dataFillingSurvey': 'dataFillingSurvey'
+        }
       }
     }
   },
