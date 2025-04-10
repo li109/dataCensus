@@ -70,15 +70,15 @@ export default {
                 { label: '深汕特别合作区', value: '深汕特别合作区' },
             ],
             tableData: [
-                { unitName: '市直单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '市级单位' },
-                { unitName: '区级单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '区级单位' },
-                { unitName: '交易机构', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 3 },
-                { unitName: '国家实验室', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 4 },
-                { unitName: '数据服务方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 5 },
-                { unitName: '数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 6 },
-                { unitName: '数据服务方、数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 7 },
-                { unitName: '中央企业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 8 },
-                { unitName: '重点行业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 9 },
+                // { unitName: '市直单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '市级单位' },
+                // { unitName: '区级单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '区级单位' },
+                // { unitName: '交易机构', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 3 },
+                // { unitName: '国家实验室', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 4 },
+                // { unitName: '数据服务方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 5 },
+                // { unitName: '数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 6 },
+                // { unitName: '数据服务方、数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 7 },
+                // { unitName: '中央企业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 8 },
+                // { unitName: '重点行业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 9 },
             ],
             page: {
                 pageNo: 1,
@@ -88,7 +88,7 @@ export default {
         }
     },
     created() {
-        // this.getList()
+        this.getList()
     },
     methods: {
         getList() {
@@ -145,7 +145,11 @@ export default {
 
             if (unitType === '市级单位' || unitType === '区级单位') {
                 let title = '市级政府公共数据资源调查表'
-                if(unitType === '区级单位') title = '区级政府公共数据资源调查表'
+                let reportTypeCode = 'city_report'
+                if(unitType === '区级单位') {
+                    title = '区级政府公共数据资源调查表'
+                    reportTypeCode = 'area_report'
+                }
                 router1 = {
                     path: '/units/base',
                     name: 'Base',
@@ -155,8 +159,8 @@ export default {
                 router2 = {
                     path: '/units/table',
                     name: 'UnitsTable',
-                    meta: { title, query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title, query: {'usciCode': usciCode, 'type': type, reportTypeCode }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode }
                 };
             }
             if (unitType == 3) {

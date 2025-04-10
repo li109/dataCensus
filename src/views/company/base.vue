@@ -144,7 +144,7 @@ export default {
                 industry: '', // 所属行业
                 address: '', // 通讯地址
                 detailAddress: '', // 详细地址
-                isPubDataOperate: '是', // 是否开展公共数据授权运营
+                isPubDataOperate: '', // 是否开展公共数据授权运营
                 operateUnit: '', // 运营单位名称
                 operateUnitNature: '', // 运营主体单位性质
                 industryCatalogueone: '', // 数据授权运营服务行业一级目录
