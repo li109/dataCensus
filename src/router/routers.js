@@ -183,6 +183,26 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/central',
+    component: Layout,
+    hidden: true,
+    redirect: '/central/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/details/central/base'], resolve),
+        name: 'CentralBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'table',
+        component: (resolve) => require(['@/views/company/details/central/table'], resolve),
+        name: 'CentralTable',
+        meta: { title: '央企数据资源调查', noCache: true }
+      }
+    ]
+  },
 ]
 
 export default new Router({

@@ -2,7 +2,7 @@
     <div class="app-container">
         <div class="table-container">
             <div class="header-container">
-                <div class="left-total">指标(至少一个行业)</div>
+                <div class="left-total">指标</div>
                 <div class="middle-box">
                     <div class="middle">交易总额（万元）</div>
                     <div class="little-list">

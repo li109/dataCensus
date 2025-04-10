@@ -70,15 +70,15 @@ export default {
                 { label: '深汕特别合作区', value: '深汕特别合作区' },
             ],
             tableData: [
-                // { unitName: '市直单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 1 },
-                // { unitName: '区级单位', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 2 },
-                // { unitName: '交易机构', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 3 },
-                // { unitName: '国家实验室', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 4 },
-                // { unitName: '数据服务方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 5 },
-                // { unitName: '数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 6 },
-                // { unitName: '数据服务方、数据应用方', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 7 },
-                // { unitName: '中央企业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 8 },
-                // { unitName: '重点行业', reportParty: '深圳市', reportTime: '2023-10-01 16:06:08', type: 9 },
+                { unitName: '市直单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '市级单位' },
+                { unitName: '区级单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '区级单位' },
+                { unitName: '交易机构', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 3 },
+                { unitName: '国家实验室', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 4 },
+                { unitName: '数据服务方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 5 },
+                { unitName: '数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 6 },
+                { unitName: '数据服务方、数据应用方', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 7 },
+                { unitName: '中央企业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 8 },
+                { unitName: '重点行业', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: 9 },
             ],
             page: {
                 pageNo: 1,
@@ -88,7 +88,7 @@ export default {
         }
     },
     created() {
-        this.getList()
+        // this.getList()
     },
     methods: {
         getList() {
@@ -129,6 +129,7 @@ export default {
                 '/lab',
                 '/service',
                 '/apply',
+                '/central'
             ];
             const tabsToClose = this.$store.state.tagsView.visitedViews.filter(view => {
                 return pathList.some(path => {
@@ -143,6 +144,8 @@ export default {
             let router2 = {}
 
             if (unitType === '市级单位' || unitType === '区级单位') {
+                let title = '市级政府公共数据资源调查表'
+                if(unitType === '区级单位') title = '区级政府公共数据资源调查表'
                 router1 = {
                     path: '/units/base',
                     name: 'Base',
@@ -152,20 +155,8 @@ export default {
                 router2 = {
                     path: '/units/table',
                     name: 'UnitsTable',
-                    meta: { title: '市级政府公共数据资源调查表', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    meta: { title, query: {'usciCode': usciCode, 'type': type }, noCache: true },
                     query: {'usciCode': usciCode, 'type': type }
-                };
-            }
-            if (unitType == 2) {
-                router1 = {
-                    path: '/units/base',
-                    name: 'UnitsBase',
-                    meta: { title: '公共数据调查基本情况', noCache: true }
-                };
-                router2 = {
-                    path: '/units/table',
-                    name: 'UnitsTable',
-                    meta: { title: '区级政府公共数据资源调查表', noCache: true }
                 };
             }
             if (unitType == 3) {
@@ -204,7 +195,6 @@ export default {
                     meta: { title: '数据服务方数据资源调查表', noCache: true }
                 };
             }
-
             if (unitType == 6) {
                 router1 = {
                     path: '/apply/base',
@@ -215,6 +205,42 @@ export default {
                     path: '/apply/table',
                     name: 'ApplyTable',
                     meta: { title: '数据应用方数据资源调查表', noCache: true }
+                };
+            }
+            if (unitType == 7) {
+                router1 = {
+                    path: '/apply/base',
+                    name: 'ApplyBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/apply/table',
+                    name: 'ApplyTable',
+                    meta: { title: '数据应用方数据资源调查表', noCache: true }
+                };
+            }
+            if (unitType == 8) {
+                router1 = {
+                    path: '/central/base',
+                    name: 'CentralBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/central/table',
+                    name: 'CentralTable',
+                    meta: { title: '央企数据资源调查', noCache: true }
+                };
+            }
+            if (unitType == 9) {
+                router1 = {
+                    path: '/apply/base',
+                    name: 'ApplyBase',
+                    meta: { title: '企业基本情况', noCache: true }
+                };
+                router2 = {
+                    path: '/apply/item/1',
+                    name: 'ApplyItem',
+                    meta: { title: '服务器产品数据资源调查', noCache: true }
                 };
             }
 
@@ -229,6 +255,72 @@ export default {
                 };
                 const router4 = {
                     path: '/apply/item/2',
+                    name: 'ApplyItem',
+                    meta: { title: '仪器仪表数据资源调查', noCache: true }
+                };
+                const router5 = {
+                    path: '/apply/other',
+                    name: 'ApplyOther',
+                    meta: { title: '其他数据资源调查', noCache: true }
+                };
+                this.$store.dispatch('tagsView/addView', router3);
+                this.$store.dispatch('tagsView/addView', router4);
+                this.$store.dispatch('tagsView/addView', router5);
+            }
+            if (unitType == 7) {
+                const router3 = {
+                    path: '/apply/item/1',
+                    name: 'ApplyItem',
+                    meta: { title: '传感器数据资源调查', noCache: true }
+                };
+                const router4 = {
+                    path: '/apply/item/2',
+                    name: 'ApplyItem',
+                    meta: { title: '仪器仪表数据资源调查', noCache: true }
+                };
+                const router5 = {
+                    path: '/apply/other',
+                    name: 'ApplyOther',
+                    meta: { title: '其他数据资源调查', noCache: true }
+                };
+                const router6 = {
+                    path: '/service/table',
+                    name: 'ServiceTable',
+                    meta: { title: '数据服务方数据资源调查表', noCache: true }
+                };
+                this.$store.dispatch('tagsView/addView', router6);
+                this.$store.dispatch('tagsView/addView', router3);
+                this.$store.dispatch('tagsView/addView', router4);
+                this.$store.dispatch('tagsView/addView', router5);
+            }
+            if (unitType == 8) {
+                const router3 = {
+                    path: '/apply/item/1',
+                    name: 'ApplyItem',
+                    meta: { title: '传感器数据资源调查', noCache: true }
+                };
+                const router4 = {
+                    path: '/apply/item/2',
+                    name: 'ApplyItem',
+                    meta: { title: '仪器仪表数据资源调查', noCache: true }
+                };
+                const router5 = {
+                    path: '/apply/other',
+                    name: 'ApplyOther',
+                    meta: { title: '其他数据资源调查', noCache: true }
+                };
+                this.$store.dispatch('tagsView/addView', router3);
+                this.$store.dispatch('tagsView/addView', router4);
+                this.$store.dispatch('tagsView/addView', router5);
+            }
+            if (unitType == 9) {
+                const router3 = {
+                    path: '/apply/item/2',
+                    name: 'ApplyItem',
+                    meta: { title: '传感器数据资源调查', noCache: true }
+                };
+                const router4 = {
+                    path: '/apply/item/3',
                     name: 'ApplyItem',
                     meta: { title: '仪器仪表数据资源调查', noCache: true }
                 };
