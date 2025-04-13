@@ -129,6 +129,7 @@ export default {
                 '/lab',
                 '/service',
                 '/apply',
+                '/serviceApply',
                 '/central'
             ];
             const tabsToClose = this.$store.state.tagsView.visitedViews.filter(view => {
@@ -143,7 +144,7 @@ export default {
             let router1 = {}
             let router2 = {}
 
-            if (unitType === '市级单位' || unitType === '区级单位') {
+            if (unitType === '市直单位' || unitType === '区级单位') {
                 let title = '市级政府公共数据资源调查表'
                 let reportTypeCode = 'city_report'
                 if(unitType === '区级单位') {
@@ -152,7 +153,7 @@ export default {
                 }
                 router1 = {
                     path: '/units/base',
-                    name: 'Base',
+                    name: 'GovernmentBase',
                     meta: { title: '公共数据调查基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
                     query: {'usciCode': usciCode, 'type': type }
                 };
@@ -163,35 +164,40 @@ export default {
                     query: {'usciCode': usciCode, 'type': type, reportTypeCode }
                 };
             }
-            if (unitType == 3) {
+            if (unitType === '数据交易机构') {
                 router1 = {
                     path: '/trade/base',
                     name: 'TradeBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/trade/table',
                     name: 'TradeTable',
-                    meta: { title: '数据交易机构数据资源调查表', noCache: true }
+                    meta: { title: '数据交易机构数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }
                 };
             }
-            if (unitType == 4) {
+            if (unitType === '国家实验室及全国重点实验室') {
                 router1 = {
                     path: '/lab/base',
                     name: 'LabBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/lab/table',
                     name: 'LabTable',
-                    meta: { title: '国家实验室及全国重点实验室数据资源调查表', noCache: true }
+                    meta: { title: '国家实验室及全国重点实验室数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }
                 };
             }
-            if (unitType == 5) {
+            if (unitType === '数据服务方') {
                 router1 = {
                     path: '/service/base',
                     name: 'ServiceBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/service/table',
@@ -199,11 +205,12 @@ export default {
                     meta: { title: '数据服务方数据资源调查表', noCache: true }
                 };
             }
-            if (unitType == 6) {
+            if (unitType === '数据应用方') {
                 router1 = {
                     path: '/apply/base',
                     name: 'ApplyBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/apply/table',
@@ -211,23 +218,25 @@ export default {
                     meta: { title: '数据应用方数据资源调查表', noCache: true }
                 };
             }
-            if (unitType == 7) {
+            if (unitType === '数据服务方、数据应用方') {
                 router1 = {
-                    path: '/apply/base',
-                    name: 'ApplyBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    path: '/serviceApply/base',
+                    name: 'ServiceApplyBase',
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
-                    path: '/apply/table',
-                    name: 'ApplyTable',
+                    path: '/serviceApply/serviceTable',
+                    name: 'ServiceApplyTable1',
                     meta: { title: '数据应用方数据资源调查表', noCache: true }
                 };
             }
-            if (unitType == 8) {
+            if (unitType === '央企') {
                 router1 = {
                     path: '/central/base',
                     name: 'CentralBase',
-                    meta: { title: '企业基本情况', noCache: true }
+                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/central/table',
@@ -251,7 +260,7 @@ export default {
             this.$store.dispatch('tagsView/addView', router1);
             this.$store.dispatch('tagsView/addView', router2);
 
-            if (unitType == 6) {
+            if (unitType === '数据应用方') {
                 const router3 = {
                     path: '/apply/item/1',
                     name: 'ApplyItem',
@@ -271,25 +280,25 @@ export default {
                 this.$store.dispatch('tagsView/addView', router4);
                 this.$store.dispatch('tagsView/addView', router5);
             }
-            if (unitType == 7) {
+            if (unitType === '数据服务方、数据应用方') {
                 const router3 = {
-                    path: '/apply/item/1',
-                    name: 'ApplyItem',
+                    path: '/serviceApply/item/1',
+                    name: 'ServiceApplyItem',
                     meta: { title: '传感器数据资源调查', noCache: true }
                 };
                 const router4 = {
-                    path: '/apply/item/2',
-                    name: 'ApplyItem',
+                    path: '/serviceApply/item/2',
+                    name: 'ServiceApplyItem',
                     meta: { title: '仪器仪表数据资源调查', noCache: true }
                 };
                 const router5 = {
-                    path: '/apply/other',
-                    name: 'ApplyOther',
+                    path: '/serviceApply/other',
+                    name: 'ServiceApplyOther',
                     meta: { title: '其他数据资源调查', noCache: true }
                 };
                 const router6 = {
-                    path: '/service/table',
-                    name: 'ServiceTable',
+                    path: '/serviceApply/applyTable',
+                    name: 'ServiceApplyTable2',
                     meta: { title: '数据服务方数据资源调查表', noCache: true }
                 };
                 this.$store.dispatch('tagsView/addView', router6);
@@ -297,7 +306,7 @@ export default {
                 this.$store.dispatch('tagsView/addView', router4);
                 this.$store.dispatch('tagsView/addView', router5);
             }
-            if (unitType == 8) {
+            if (unitType === '央企') {
                 const router3 = {
                     path: '/apply/item/1',
                     name: 'ApplyItem',

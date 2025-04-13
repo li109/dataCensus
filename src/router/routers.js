@@ -79,8 +79,8 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/base'], resolve),
-        name: 'Base',
+        component: (resolve) => require(['@/views/company/governmentBase'], resolve),
+        name: 'GovernmentBase',
         meta: { title: '公共数据调查基本情况', noCache: true }
       },
       {
@@ -99,7 +99,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/trade/base'], resolve),
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'TradeBase',
         meta: { title: '企业基本情况', noCache: true }
       },
@@ -119,7 +119,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/lab/base'], resolve),
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'LabBase',
         meta: { title: '企业基本情况', noCache: true }
       },
@@ -139,7 +139,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/service/base'], resolve),
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'ServiceBase',
         meta: { title: '企业基本情况', noCache: true }
       },
@@ -159,7 +159,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/apply/base'], resolve),
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'ApplyBase',
         meta: { title: '企业基本情况', noCache: true }
       },
@@ -184,6 +184,44 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/serviceApply',
+    component: Layout,
+    hidden: true,
+    redirect: '/serviceApply/base',
+    children: [
+      {
+        path: 'base',
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
+        name: 'ServiceApplyBase',
+        meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'item/:id',
+        component: (resolve) => require(['@/views/company/details/apply/item'], resolve),
+        name: 'ServiceApplyItem',
+        meta: { title: '数据资源调查', noCache: true }
+      },
+      {
+        path: 'other',
+        component: (resolve) => require(['@/views/company/details/apply/other'], resolve),
+        name: 'ServiceApplyOther',
+        meta: { title: '其他数据资源调查', noCache: true }
+      },
+      {
+        path: 'serviceTable',
+        component: (resolve) => require(['@/views/company/details/service/table'], resolve),
+        name: 'ServiceApplyTable1',
+        meta: { title: '数据服务方数据资源调查表', noCache: true }
+      },
+      {
+        path: 'applyTable',
+        component: (resolve) => require(['@/views/company/details/apply/table'], resolve),
+        name: 'ServiceApplyTable2',
+        meta: { title: '数据应用方数据资源调查表', noCache: true }
+      }
+    ]
+  },
+  {
     path: '/central',
     component: Layout,
     hidden: true,
@@ -191,7 +229,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'base',
-        component: (resolve) => require(['@/views/company/details/central/base'], resolve),
+        component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'CentralBase',
         meta: { title: '企业基本情况', noCache: true }
       },
