@@ -244,18 +244,6 @@ export default {
                     meta: { title: '央企数据资源调查', noCache: true }
                 };
             }
-            if (unitType == 9) {
-                router1 = {
-                    path: '/apply/base',
-                    name: 'ApplyBase',
-                    meta: { title: '企业基本情况', noCache: true }
-                };
-                router2 = {
-                    path: '/apply/item/1',
-                    name: 'ApplyItem',
-                    meta: { title: '服务器产品数据资源调查', noCache: true }
-                };
-            }
 
             this.$store.dispatch('tagsView/addView', router1);
             this.$store.dispatch('tagsView/addView', router2);
@@ -314,26 +302,6 @@ export default {
                 };
                 const router4 = {
                     path: '/apply/item/2',
-                    name: 'ApplyItem',
-                    meta: { title: '仪器仪表数据资源调查', noCache: true }
-                };
-                const router5 = {
-                    path: '/apply/other',
-                    name: 'ApplyOther',
-                    meta: { title: '其他数据资源调查', noCache: true }
-                };
-                this.$store.dispatch('tagsView/addView', router3);
-                this.$store.dispatch('tagsView/addView', router4);
-                this.$store.dispatch('tagsView/addView', router5);
-            }
-            if (unitType == 9) {
-                const router3 = {
-                    path: '/apply/item/2',
-                    name: 'ApplyItem',
-                    meta: { title: '传感器数据资源调查', noCache: true }
-                };
-                const router4 = {
-                    path: '/apply/item/3',
                     name: 'ApplyItem',
                     meta: { title: '仪器仪表数据资源调查', noCache: true }
                 };

@@ -209,7 +209,7 @@
         </div>
         <div class="notes-container">
             <div class="left">备注</div>
-            <div class="right"></div>
+            <div class="right">{{ beizhu.comments }}</div>
         </div>
     </div>
 </template>
@@ -267,6 +267,9 @@ export default {
                 area_33: { yearValue1: '',  yearValue2: '', yearValue3: '', yearValue4: '',},
                 area_34: { yearValue1: '',  yearValue2: '', yearValue3: '', yearValue4: '',},
             },
+            beizhu: {
+                comments: ''
+            }
         }
     },
     created() {
@@ -287,6 +290,7 @@ export default {
                     if(res.rows.resource.shujucunchu) this.handlerData('shujucunchu', res.rows.resource.shujucunchu)
                     if(res.rows.resource.shujuliutong) this.handlerData('shujuliutong', res.rows.resource.shujuliutong)
                     if(res.rows.resource.shujuyingyong) this.handlerData('shujuyingyong', res.rows.resource.shujuyingyong)
+                    if(res.rows.resource.beizhu) this.handlerData('beizhu', res.rows.resource.beizhu)
                 }
             })
         },

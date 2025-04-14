@@ -50,13 +50,13 @@
                     <div class="card-item">
                         <div class="card-title">数据授权运营服务行业</div>
                         <div class="type-list">
-                            <div class="type-item">
+                            <!-- <div class="type-item">
                                 <div>农、林、牧、渔业</div>
                                 <div>【农业】</div>
-                            </div>
+                            </div> -->
                             <div class="type-item">
-                                <div>采矿业</div>
-                                <div>【煤炭开采和洗选业】</div>
+                                <div>{{ item.industryCatalogueone }}</div>
+                                <div>{{ item.industryCataloguetwo }}</div>
                             </div>
                         </div>
                     </div>

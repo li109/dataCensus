@@ -17,7 +17,51 @@
                 <div class="item-title">单位类型</div>
                 <div class="item-content">{{ info.unitType }}</div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div v-if="pageType === 'central'" class="table-item">
+                <div class="item-title">是否为央企子公司</div>
+                <div v-if="!(info.isChildCenter)" class="item-content"></div>
+                <div class="item-content">【{{ info.isChildCenter }}】</div>
+            </div>
+            <div v-if="info.isChildCenter === '是' && pageType === 'central'" class="table-item">
+                <div class="item-title">所属央企集团</div>
+                <div class="item-content">{{ info.centerCompany }}</div>
+            </div>
+            <div v-if="info.isChildCenter === '否' && pageType === 'central'" class="table-item">
+                <div class="item-title">单位名称数据中心情况（存储数据量前三）</div>
+                <div class="item-content"></div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply'" class="table-item">
+                <div class="item-title">企业分类（多选）</div>
+                <div class="item-content">{{ info.companyType }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'serviceApply'" class="table-item">
+                <div class="item-title">数据服务企业类型（多选）</div>
+                <div class="item-content">
+                    <div class="item-content-list">
+                        <div class="list-item">
+                            <div>数字技术类：</div>
+                            <div>{{ info.digiTelCategory }}</div>
+                        </div>
+                        <div class="list-item">
+                            <div>互联网平台类：</div>
+                            <div>{{ info.intPlatformCategory }}</div>
+                        </div>
+                        <div class="list-item">
+                            <div>其他类：</div>
+                            <div>{{ info.otherCategory }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">是否生产如下设备（多选）</div>
+                <div class="item-content">{{ info.isProduceDevice }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">所属行业</div>
+                <div class="item-content">{{ info.industry }}</div>
+            </div>
+            <div v-if="pageType === 'trade' || pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
                 <div class="item-title">主要经济指标（万元）</div>
                 <div class="item-list">
                     <div class="line">
@@ -54,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item-line">
+            <div v-if="pageType === 'trade' || pageType === 'lab'||pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item-line">
                 <div class="line-item">
                     <div class="item-title">人员数量</div>
                     <div class="item-content">{{ info.personNumber }}</div>
@@ -64,29 +108,67 @@
                     <div class="item-content">{{ info.femalePerson }}</div>
                 </div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div class="table-item">
                 <div class="item-title">单位简介</div>
                 <div class="item-content">{{ info.companyProfile }}</div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div class="table-item">
                 <div class="item-title">通讯地址</div>
                 <div class="item-content">{{ info.address }}</div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div class="table-item">
                 <div class="item-title">详细地址</div>
                 <div class="item-content">{{ info.detailAddress }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply'" class="table-item">
+                <div class="item-title">企业规模</div>
+                <div class="item-content">{{ info.companyScale }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">企业数据应用场景</div>
+                <div class="item-content">{{ info.applicationScenarios }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">数据资源入表科目</div>
+                <div class="item-content">{{ info.subjectName }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">是否有AI产品</div>
+                <div v-if="!(info.isAi)" class="item-content"></div>
+                <div class="item-content">【{{ info.isAi }}】</div>
+            </div>
+            <div v-if="info.isAi==='是'&&(pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central')" class="table-item">
+                <div class="item-title">AI开发瓶颈</div>
+                <div class="item-content">{{ info.aiBottleneck }}</div>
+            </div>
+            <div v-if="info.isAi==='是'&&(pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central')" class="table-item">
+                <div class="item-title">AI产品主要应用形式</div>
+                <div class="item-content">{{ info.aiApp }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">企业未来需要加强数据应用的哪些能力</div>
+                <div class="item-content">{{ info.appSkillComment }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">企业在数据应用方面的瓶颈</div>
+                <div class="item-content">{{ info.bottleneck }}</div>
+            </div>
+            <div v-if="pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
+                <div class="item-title">企业数据管理能力成熟度等级（DCMM）</div>
+                <div class="item-content">{{ info.dcmm }}</div>
             </div>
             <div v-if="pageType === 'trade'" class="table-item">
                 <div class="item-title">应用场景</div>
                 <div class="item-content">{{ info.applicationScenarios }}</div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div v-if="pageType === 'trade' || pageType === 'lab' || pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central'" class="table-item">
                 <div class="item-title">是否开放共享数据</div>
-                <div class="item-content"></div>
+                <div v-if="!(info.isOpenSharingData)" class="item-content"></div>
+                <div v-else class="item-content">【{{ info.isOpenSharingData }}】</div>
             </div>
-            <div v-if="pageType === 'trade'" class="table-item">
+            <div v-if="info.isOpenSharingData==='是'&&(pageType==='trade' || pageType === 'lab' || pageType === 'service' || pageType === 'apply' || pageType === 'serviceApply' || pageType === 'central')" class="table-item">
                 <div class="item-title">是否用于研发数据产品</div>
-                <div class="item-content"></div>
+                <div class="item-content">{{ info.isDevelopingDataProducts }}</div>
             </div>
             <div class="table-item">
                 <div class="item-title">填报人员</div>
@@ -134,6 +216,7 @@ export default {
                 digiTelCategory: '', // 数据服务企业类型 - 数字技术类
                 intPlatformCategory: '', // 数据服务企业类型 - 互联网平台类
                 otherCategory: '', // 数据服务企业类型 - 其他类
+                industry: '', // 所属行业
                 oneIndustry: '', // 所属行业一级分类
                 twoIndustry: '', // 所属行业二级分类
                 lastYearRevenue: '', // 2024年营收
@@ -169,6 +252,8 @@ export default {
                 dataApp: '', // 企业数据主要应用在
                 nationalProportion: '', // 本企业在行业 / 领域市场份额（%）全国
                 globalProportion: '', // 本企业在行业 / 领域市场份额（%）全球
+                isOpenSharingData: '', // 是否开放共享数据
+                isDevelopingDataProducts: '', // 是否用于研发数据产品
             }
         }
     },
@@ -236,6 +321,28 @@ export default {
                 padding: 6px 10px;
                 color: $tableTextColor;
                 box-sizing: border-box;
+
+                .item-content-list {
+                    width: 100%;
+                    .list-item {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        margin-top: 6px;
+                        div:nth-child(1) {
+                            width: 90px;
+                            font-weight: 600;
+                            color: #888;
+                            text-align: right;
+                        }
+                        div:nth-child(2) {
+                            flex: 1;
+                        }
+                    }
+                    .list-item:first-child {
+                        margin-top: 0;
+                    }
+                }
             }
 
             .item-list {
@@ -305,6 +412,7 @@ export default {
                         color: $tableTextColor2;
                         font-weight: bold;
                     }
+
                     div:nth-child(2) {
                         flex: 1
                     }
