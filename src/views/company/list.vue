@@ -202,7 +202,8 @@ export default {
                 router2 = {
                     path: '/service/table',
                     name: 'ServiceTable',
-                    meta: { title: '数据服务方数据资源调查表', noCache: true }
+                    meta: { title: '数据服务方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
                 };
             }
             if (unitType === '数据应用方') {
@@ -215,7 +216,8 @@ export default {
                 router2 = {
                     path: '/apply/table',
                     name: 'ApplyTable',
-                    meta: { title: '数据应用方数据资源调查表', noCache: true }
+                    meta: { title: '数据应用方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
                 };
             }
             if (unitType === '数据服务方、数据应用方') {
@@ -226,9 +228,10 @@ export default {
                     query: {'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
-                    path: '/serviceApply/serviceTable',
-                    name: 'ServiceApplyTable1',
-                    meta: { title: '数据应用方数据资源调查表', noCache: true }
+                    path: '/serviceApply/applyTable',
+                    name: 'ServiceApplyTable2',
+                    meta: { title: '数据应用方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
                 };
             }
             if (unitType === '央企') {
@@ -241,7 +244,8 @@ export default {
                 router2 = {
                     path: '/central/table',
                     name: 'CentralTable',
-                    meta: { title: '央企数据资源调查', noCache: true }
+                    meta: { title: '央企数据资源调查', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }
                 };
             }
 
@@ -285,9 +289,10 @@ export default {
                     meta: { title: '其他数据资源调查', noCache: true }
                 };
                 const router6 = {
-                    path: '/serviceApply/applyTable',
-                    name: 'ServiceApplyTable2',
-                    meta: { title: '数据服务方数据资源调查表', noCache: true }
+                    path: '/serviceApply/serviceTable',
+                    name: 'ServiceApplyTable1',
+                    meta: { title: '数据服务方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
                 };
                 this.$store.dispatch('tagsView/addView', router6);
                 this.$store.dispatch('tagsView/addView', router3);
