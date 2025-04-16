@@ -101,8 +101,7 @@
 </template>
 
 <script>
-import { getResource } from '@/api/company'
-import { objectMerge } from '@/utils'
+import { getExchangeResource } from '@/api/company'
 export default {
     name: 'TradeTable',
     data() {
@@ -171,26 +170,12 @@ export default {
                 type: this.type,
                 reportTypeCode: this.reportTypeCode
             }
-            getResource(params).then(res => {
-                console.log(res, 'res')
+            getExchangeResource(params).then(res => {
                 if(res && res.rows && res.rows.resource) {
-                    if(res.rows.resource['nong、lin、mu、yuye']) {
-
-                    }
+                    this.list = res.rows.resource || this.list
                 }
-                //     if(res.rows.resource.shujucunchu) this.handlerData('shujucunchu', res.rows.resource.shujucunchu)
-                //     if(res.rows.resource.shujuliutong) this.handlerData('shujuliutong', res.rows.resource.shujuliutong)
-                //     if(res.rows.resource.shujuyingyong) this.handlerData('shujuyingyong', res.rows.resource.shujuyingyong)
-                //     if(res.rows.resource.beizhu) this.handlerData('beizhu', res.rows.resource.beizhu)
-                // }
             })
         },
-        handlerData(target, source) {
-            if(!target || !source) return;
-            Object.keys(this[target]).forEach(key => {
-                if(source[key]) this[target][key] = objectMerge(this[target][key], JSON.parse(JSON.stringify(source[key], (key, value) => (value === null ? undefined : value))))
-            })
-        }
     }
 }
 </script>

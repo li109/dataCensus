@@ -26,3 +26,21 @@ export function getResource(data) {
     data
   })
 }
+
+// 获取数据交易资源详情
+export function getExchangeResource(data) {
+  return request({
+    url: 'dataFillingSurvey/getExchangeResource',
+    method: 'post',
+    data
+  })
+}
+
+// 获取其他资源详情
+export function getOtherResource(data) {
+  return request({
+    url: 'dataFillingSurvey/getResourceOther',
+    method: 'post',
+    data
+  })
+}

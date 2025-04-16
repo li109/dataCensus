@@ -253,71 +253,73 @@ export default {
             this.$store.dispatch('tagsView/addView', router2);
 
             if (unitType === '数据应用方') {
-                const router3 = {
-                    path: '/apply/item/1',
-                    name: 'ApplyItem',
-                    meta: { title: '传感器数据资源调查', noCache: true }
-                };
-                const router4 = {
-                    path: '/apply/item/2',
-                    name: 'ApplyItem',
-                    meta: { title: '仪器仪表数据资源调查', noCache: true }
-                };
-                const router5 = {
+                if(row.deviceList && row.deviceList.length > 0) {
+                    for(let i = 0; i < row.deviceList.length; i++) {
+                        this.$store.dispatch('tagsView/addView', 
+                            {
+                                path: `/apply/item/${i + 1}`,
+                                name: 'ApplyItem',
+                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                            }
+                        );
+                    }
+                }
+                const routerOther = {
                     path: '/apply/other',
                     name: 'ApplyOther',
-                    meta: { title: '其他数据资源调查', noCache: true }
+                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
-                this.$store.dispatch('tagsView/addView', router3);
-                this.$store.dispatch('tagsView/addView', router4);
-                this.$store.dispatch('tagsView/addView', router5);
+                this.$store.dispatch('tagsView/addView', routerOther);
             }
             if (unitType === '数据服务方、数据应用方') {
-                const router3 = {
-                    path: '/serviceApply/item/1',
-                    name: 'ServiceApplyItem',
-                    meta: { title: '传感器数据资源调查', noCache: true }
-                };
-                const router4 = {
-                    path: '/serviceApply/item/2',
-                    name: 'ServiceApplyItem',
-                    meta: { title: '仪器仪表数据资源调查', noCache: true }
-                };
-                const router5 = {
-                    path: '/serviceApply/other',
-                    name: 'ServiceApplyOther',
-                    meta: { title: '其他数据资源调查', noCache: true }
-                };
-                const router6 = {
+                this.$store.dispatch('tagsView/addView', {
                     path: '/serviceApply/serviceTable',
                     name: 'ServiceApplyTable1',
                     meta: { title: '数据服务方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
                     query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
+                });
+                if(row.deviceList && row.deviceList.length > 0) {
+                    for(let i = 0; i < row.deviceList.length; i++) {
+                        this.$store.dispatch('tagsView/addView', 
+                            {
+                                path: `/serviceApply/item/${i + 1}`,
+                                name: 'ServiceApplyItem',
+                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                            }
+                        );
+                    }
+                }
+                const routerOther = {
+                    path: '/serviceApply/other',
+                    name: 'ServiceApplyOther',
+                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
-                this.$store.dispatch('tagsView/addView', router6);
-                this.$store.dispatch('tagsView/addView', router3);
-                this.$store.dispatch('tagsView/addView', router4);
-                this.$store.dispatch('tagsView/addView', router5);
+                this.$store.dispatch('tagsView/addView', routerOther);
             }
             if (unitType === '央企') {
-                const router3 = {
-                    path: '/apply/item/1',
-                    name: 'ApplyItem',
-                    meta: { title: '传感器数据资源调查', noCache: true }
+                if(row.deviceList && row.deviceList.length > 0) {
+                    for(let i = 0; i < row.deviceList.length; i++) {
+                        this.$store.dispatch('tagsView/addView', 
+                            {
+                                path: `/central/item/${i + 1}`,
+                                name: 'CentralItem',
+                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                            }
+                        );
+                    }
+                }
+                const routerOther = {
+                    path: '/central/other',
+                    name: 'CentralOther',
+                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: {'usciCode': usciCode, 'type': type }
                 };
-                const router4 = {
-                    path: '/apply/item/2',
-                    name: 'ApplyItem',
-                    meta: { title: '仪器仪表数据资源调查', noCache: true }
-                };
-                const router5 = {
-                    path: '/apply/other',
-                    name: 'ApplyOther',
-                    meta: { title: '其他数据资源调查', noCache: true }
-                };
-                this.$store.dispatch('tagsView/addView', router3);
-                this.$store.dispatch('tagsView/addView', router4);
-                this.$store.dispatch('tagsView/addView', router5);
+                this.$store.dispatch('tagsView/addView', routerOther);
             }
 
             this.$router.push(router1);

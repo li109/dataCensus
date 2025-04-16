@@ -165,13 +165,13 @@ export const constantRouterMap = [
       },
       {
         path: 'item/:id',
-        component: (resolve) => require(['@/views/company/details/apply/item'], resolve),
+        component: (resolve) => require(['@/views/company/item'], resolve),
         name: 'ApplyItem',
         meta: { title: '数据资源调查', noCache: true }
       },
       {
         path: 'other',
-        component: (resolve) => require(['@/views/company/details/apply/other'], resolve),
+        component: (resolve) => require(['@/views/company/other'], resolve),
         name: 'ApplyOther',
         meta: { title: '其他数据资源调查', noCache: true }
       },
@@ -197,13 +197,13 @@ export const constantRouterMap = [
       },
       {
         path: 'item/:id',
-        component: (resolve) => require(['@/views/company/details/apply/item'], resolve),
+        component: (resolve) => require(['@/views/company/item'], resolve),
         name: 'ServiceApplyItem',
         meta: { title: '数据资源调查', noCache: true }
       },
       {
         path: 'other',
-        component: (resolve) => require(['@/views/company/details/apply/other'], resolve),
+        component: (resolve) => require(['@/views/company/other'], resolve),
         name: 'ServiceApplyOther',
         meta: { title: '其他数据资源调查', noCache: true }
       },
@@ -232,6 +232,18 @@ export const constantRouterMap = [
         component: (resolve) => require(['@/views/company/enterpriseBase'], resolve),
         name: 'CentralBase',
         meta: { title: '企业基本情况', noCache: true }
+      },
+      {
+        path: 'item/:id',
+        component: (resolve) => require(['@/views/company/item'], resolve),
+        name: 'CentralItem',
+        meta: { title: '数据资源调查', noCache: true }
+      },
+      {
+        path: 'other',
+        component: (resolve) => require(['@/views/company/other'], resolve),
+        name: 'CentralOther',
+        meta: { title: '其他数据资源调查', noCache: true }
       },
       {
         path: 'table',
