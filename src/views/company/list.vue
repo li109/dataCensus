@@ -101,7 +101,7 @@ export default {
                 }
             }
             getTableList(data).then(res => {
-                if(res && res.rows) {
+                if (res && res.rows) {
                     this.tableData = res.rows
                     this.page.total = res.total
                 }
@@ -147,105 +147,105 @@ export default {
             if (unitType === '市直单位' || unitType === '区级单位') {
                 let title = '市级政府公共数据资源调查表'
                 let reportTypeCode = 'city_report'
-                if(unitType === '区级单位') {
+                if (unitType === '区级单位') {
                     title = '区级政府公共数据资源调查表'
                     reportTypeCode = 'area_report'
                 }
                 router1 = {
                     path: '/units/base',
                     name: 'GovernmentBase',
-                    meta: { title: '公共数据调查基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '公共数据调查基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/units/table',
                     name: 'UnitsTable',
-                    meta: { title, query: {'usciCode': usciCode, 'type': type, reportTypeCode }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode }
+                    meta: { title, query: { 'usciCode': usciCode, 'type': type, reportTypeCode }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode }
                 };
             }
             if (unitType === '数据交易机构') {
                 router1 = {
                     path: '/trade/base',
                     name: 'TradeBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/trade/table',
                     name: 'TradeTable',
-                    meta: { title: '数据交易机构数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }
+                    meta: { title: '数据交易机构数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'jys_report' }
                 };
             }
             if (unitType === '国家实验室及全国重点实验室') {
                 router1 = {
                     path: '/lab/base',
                     name: 'LabBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/lab/table',
                     name: 'LabTable',
-                    meta: { title: '国家实验室及全国重点实验室数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }
+                    meta: { title: '国家实验室及全国重点实验室数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sys_report' }
                 };
             }
             if (unitType === '数据服务方') {
                 router1 = {
                     path: '/service/base',
                     name: 'ServiceBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/service/table',
                     name: 'ServiceTable',
-                    meta: { title: '数据服务方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
+                    meta: { title: '数据服务方数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
                 };
             }
             if (unitType === '数据应用方') {
                 router1 = {
                     path: '/apply/base',
                     name: 'ApplyBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/apply/table',
                     name: 'ApplyTable',
-                    meta: { title: '数据应用方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
+                    meta: { title: '数据应用方数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
                 };
             }
             if (unitType === '数据服务方、数据应用方') {
                 router1 = {
                     path: '/serviceApply/base',
                     name: 'ServiceApplyBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/serviceApply/applyTable',
                     name: 'ServiceApplyTable2',
-                    meta: { title: '数据应用方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
+                    meta: { title: '数据应用方数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'app_report' }
                 };
             }
             if (unitType === '央企') {
                 router1 = {
                     path: '/central/base',
                     name: 'CentralBase',
-                    meta: { title: '企业基本情况', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
+                    meta: { title: '企业基本情况', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type }
                 };
                 router2 = {
                     path: '/central/table',
                     name: 'CentralTable',
-                    meta: { title: '央企数据资源调查', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }
+                    meta: { title: '央企数据资源调查', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'yqsj_report' }
                 };
             }
 
@@ -253,73 +253,85 @@ export default {
             this.$store.dispatch('tagsView/addView', router2);
 
             if (unitType === '数据应用方') {
-                if(row.deviceList && row.deviceList.length > 0) {
-                    for(let i = 0; i < row.deviceList.length; i++) {
-                        this.$store.dispatch('tagsView/addView', 
-                            {
-                                path: `/apply/item/${i + 1}`,
-                                name: 'ApplyItem',
-                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
-                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
-                            }
-                        );
+                if (row.deviceList && row.deviceList.length > 0) {
+                    for (let i = 0; i < row.deviceList.length; i++) {
+                        if (row.deviceList[i] === '其他') {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: '/apply/other',
+                                    name: 'ApplyOther',
+                                    meta: { title: '其他数据资源调查', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type }
+                                }
+                            );
+                        } else {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: `/apply/item/${i + 1}`,
+                                    name: 'ApplyItem',
+                                    meta: { title: `${row.deviceList[i]}数据资源调查`, query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                                }
+                            );
+                        }
                     }
                 }
-                const routerOther = {
-                    path: '/apply/other',
-                    name: 'ApplyOther',
-                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
-                };
-                this.$store.dispatch('tagsView/addView', routerOther);
             }
             if (unitType === '数据服务方、数据应用方') {
                 this.$store.dispatch('tagsView/addView', {
                     path: '/serviceApply/serviceTable',
                     name: 'ServiceApplyTable1',
-                    meta: { title: '数据服务方数据资源调查表', query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
+                    meta: { title: '数据服务方数据资源调查表', query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }, noCache: true },
+                    query: { 'usciCode': usciCode, 'type': type, reportTypeCode: 'sup_report' }
                 });
-                if(row.deviceList && row.deviceList.length > 0) {
-                    for(let i = 0; i < row.deviceList.length; i++) {
-                        this.$store.dispatch('tagsView/addView', 
-                            {
-                                path: `/serviceApply/item/${i + 1}`,
-                                name: 'ServiceApplyItem',
-                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
-                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
-                            }
-                        );
+                if (row.deviceList && row.deviceList.length > 0) {
+                    for (let i = 0; i < row.deviceList.length; i++) {
+                        if (row.deviceList[i] === '其他') {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: '/serviceApply/other',
+                                    name: 'ServiceApplyOther',
+                                    meta: { title: '其他数据资源调查', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type }
+                                }
+                            );
+                        } else {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: `/serviceApply/item/${i + 1}`,
+                                    name: 'ServiceApplyItem',
+                                    meta: { title: `${row.deviceList[i]}数据资源调查`, query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                                }
+                            );
+                        }
                     }
                 }
-                const routerOther = {
-                    path: '/serviceApply/other',
-                    name: 'ServiceApplyOther',
-                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
-                };
-                this.$store.dispatch('tagsView/addView', routerOther);
             }
             if (unitType === '央企') {
-                if(row.deviceList && row.deviceList.length > 0) {
-                    for(let i = 0; i < row.deviceList.length; i++) {
-                        this.$store.dispatch('tagsView/addView', 
-                            {
-                                path: `/central/item/${i + 1}`,
-                                name: 'CentralItem',
-                                meta: { title: `${row.deviceList[i]}数据资源调查`, query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
-                                query: {'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
-                            }
-                        );
+                if (row.deviceList && row.deviceList.length > 0) {
+                    for (let i = 0; i < row.deviceList.length; i++) {
+                        if (row.deviceList[i] === '其他') {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: '/central/other',
+                                    name: 'CentralOther',
+                                    meta: { title: '其他数据资源调查', query: { 'usciCode': usciCode, 'type': type }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type }
+                                }
+                            );
+                        } else {
+                            this.$store.dispatch('tagsView/addView',
+                                {
+                                    path: `/central/item/${i + 1}`,
+                                    name: 'CentralItem',
+                                    meta: { title: `${row.deviceList[i]}数据资源调查`, query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }, noCache: true },
+                                    query: { 'usciCode': usciCode, 'type': type, reportTypeName: row.deviceList[i] }
+                                }
+                            );
+                        }
                     }
                 }
-                const routerOther = {
-                    path: '/central/other',
-                    name: 'CentralOther',
-                    meta: { title: '其他数据资源调查', query: {'usciCode': usciCode, 'type': type }, noCache: true },
-                    query: {'usciCode': usciCode, 'type': type }
-                };
-                this.$store.dispatch('tagsView/addView', routerOther);
             }
 
             this.$router.push(router1);

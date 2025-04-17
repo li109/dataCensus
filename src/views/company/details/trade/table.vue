@@ -6,15 +6,15 @@
                 <div class="middle-box">
                     <div class="middle">交易总额（万元）</div>
                     <div class="little-list">
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
                     </div>
                 </div>
                 <div class="middle-box">
                     <div class="middle">交易次数（次）</div>
                     <div class="little-list">
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
                     </div>
                 </div>
                 <div class="large-box">
@@ -30,22 +30,22 @@
                         <div>省外供给方数量（个）</div>
                     </div>
                     <div class="little-list">
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
                     </div>
                 </div>
                 <div class="large-box last">
@@ -61,22 +61,22 @@
                         <div>省外供给方数量（个）</div>
                     </div>
                     <div class="little-list">
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
+                        <div>2023年</div>
                         <div>2024年</div>
-                        <div>2025年</div>
                     </div>
                 </div>
             </div>
