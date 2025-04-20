@@ -67,7 +67,7 @@ export const constantRouterMap = [
         path: 'list',
         component: (resolve) => require(['@/views/company/list'], resolve),
         name: 'List',
-        meta: { title: '数据资源调查表', icon: 'index', affix: true, noCache: true }
+        meta: { title: '数据资源调查表', icon: 'index', affix: true }
       }
     ]
   },

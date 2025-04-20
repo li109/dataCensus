@@ -1,9 +1,37 @@
 import request from '@/utils/request'
+import newRequest from '@/utils/requestNew'
+
+// 获取上报方list
+export function getReporteParty(data) {
+  return request({
+    url: 'dataFillingSurvey/getReporteParty',
+    method: 'post',
+    data
+  })
+}
 
 // 获取list
 export function getTableList(data) {
   return request({
     url: 'dataFillingSurvey/page',
+    method: 'post',
+    data
+  })
+}
+
+// 单个导出
+export function getExportExcel(data) {
+  return newRequest({
+    url: 'dataFillingSurvey/exportExcel',
+    method: 'post',
+    data,
+    // responseType: 'blob'
+  })
+}
+// 批量导出
+export function getExportZip(data) {
+  return request({
+    url: 'dataFillingSurvey/exportZip',
     method: 'post',
     data
   })

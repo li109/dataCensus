@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="btns">
-                <el-button type="primary" size="mini" @click="getList">查询</el-button>
-                <el-button type="warning" size="mini">重置</el-button>
+                <el-button type="primary" size="mini" @click="query">查询</el-button>
+                <el-button type="warning" size="mini" @click="reset">重置</el-button>
             </div>
         </div>
         <div class="select-btn">
@@ -33,18 +33,18 @@
             <el-table-column label="操作" width="110px" align="center" fixed="right">
                 <template slot-scope="scope">
                     <span class="click-btn" @click="openDetails(scope.row)">查看</span>
-                    <span class="click-btn">导出数据</span>
+                    <span class="click-btn" @click="downloadExcel(scope.row)">导出数据</span>
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination :page-size.sync="page.size" :total="page.total" :current-page.sync="page.page"
+        <el-pagination :page-size="page.pageSize" :total="page.total" :current-page="page.pageNo"
             style="margin-top: 8px;" layout="total, prev, pager, next, sizes" @size-change="handleSizeChange"
             @current-change="handleCurrentChange" />
     </div>
 </template>
 
 <script>
-import { getTableList } from '@/api/company'
+import { getReporteParty, getTableList, getExportExcel } from '@/api/company'
 export default {
     name: 'Questionnaire',
     data() {
@@ -55,19 +55,19 @@ export default {
             },
             multipleSelection: [],
             areaList: [
-                { label: '全部', value: '' },
-                { label: '深圳市', value: '深圳市' },
-                { label: '福田区', value: '福田区' },
-                { label: '南山区', value: '南山区' },
-                { label: '罗湖区', value: '罗湖区' },
-                { label: '宝安区', value: '宝安区' },
-                { label: '龙岗区', value: '龙岗区' },
-                { label: '龙华区', value: '龙华区' },
-                { label: '光明区', value: '光明区' },
-                { label: '盐田区', value: '盐田区' },
-                { label: '坪山区', value: '坪山区' },
-                { label: '大鹏新区', value: '大鹏新区' },
-                { label: '深汕特别合作区', value: '深汕特别合作区' },
+                // { label: '全部', value: '' },
+                // { label: '深圳市', value: '深圳市' },
+                // { label: '福田区', value: '福田区' },
+                // { label: '南山区', value: '南山区' },
+                // { label: '罗湖区', value: '罗湖区' },
+                // { label: '宝安区', value: '宝安区' },
+                // { label: '龙岗区', value: '龙岗区' },
+                // { label: '龙华区', value: '龙华区' },
+                // { label: '光明区', value: '光明区' },
+                // { label: '盐田区', value: '盐田区' },
+                // { label: '坪山区', value: '坪山区' },
+                // { label: '大鹏新区', value: '大鹏新区' },
+                // { label: '深汕特别合作区', value: '深汕特别合作区' },
             ],
             tableData: [
                 // { unitName: '市直单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '市级单位' },
@@ -88,9 +88,20 @@ export default {
         }
     },
     created() {
+        this.getReporteList()
         this.getList()
     },
     methods: {
+        getReporteList() {
+            getReporteParty().then(res => {
+                if (res && res.rows) {
+                    this.areaList = res.rows.map(item => {
+                        return { label: item, value: item }
+                    })
+                    this.areaList.unshift({ label: '全部', value: '' })
+                }
+            })
+        },
         getList() {
             let data = {
                 area: this.searchForm.area,
@@ -105,6 +116,18 @@ export default {
                     this.tableData = res.rows
                     this.page.total = res.total
                 }
+            })
+        },
+        downloadExcel(row) {
+            const params = {
+                unitName: row.unitName,
+                usciCode: row.usciCode,
+                type: row.type,
+                unitType: row.unitType
+            }
+            getExportExcel(params).then(res => {
+                const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
+                this.downloadFile(res.data, decodeURIComponent(fileName))
             })
         },
         handleSizeChange(val) {
@@ -335,6 +358,28 @@ export default {
             }
 
             this.$router.push(router1);
+        },
+        query() {
+            this.page.pageNo = 1
+            this.getList()
+        },
+        reset() {
+            this.searchForm.area = ''
+            this.searchForm.unitName = ''
+            this.page.pageNo = 1
+            this.page.pageSize = 10
+            this.getList()
+        },
+        // 下载文件
+        downloadFile(obj, fileName) {
+            const url = window.URL.createObjectURL(new Blob([obj]))
+            const link = document.createElement('a')
+            link.style.display = 'none'
+            link.href = url
+            link.setAttribute('download', fileName)
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
         }
     }
 }
