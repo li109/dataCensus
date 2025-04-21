@@ -1,5 +1,4 @@
 import request from '@/utils/request'
-import newRequest from '@/utils/requestNew'
 
 // 获取上报方list
 export function getReporteParty(data) {
@@ -21,7 +20,7 @@ export function getTableList(data) {
 
 // 单个导出
 export function getExportExcel(data) {
-  return newRequest({
+  return request({
     url: 'dataFillingSurvey/exportExcel',
     method: 'post',
     data,
@@ -30,7 +29,7 @@ export function getExportExcel(data) {
 }
 // 批量导出
 export function getExportZip(data) {
-  return newRequest({
+  return request({
     url: 'dataFillingSurvey/exportZip',
     method: 'post',
     data,

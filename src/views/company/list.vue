@@ -4,8 +4,7 @@
             <div class="condition">
                 <div class="item">
                     <span class="text">上报方:</span>
-                    <el-select v-model="searchForm.area" size="mini" placeholder="请选择上报方" style="width: 200px;"
-                        clearable>
+                    <el-select v-model="searchForm.area" size="mini" placeholder="请选择上报方" style="width: 200px;">
                         <el-option v-for="item of areaList" :index="item.label" :label="item.label"
                             :value="item.value" />
                     </el-select>
@@ -97,7 +96,7 @@ export default {
                     this.areaList = res.rows.map(item => {
                         return { label: item, value: item }
                     })
-                    if(this.areaList.length > 0) {
+                    if (this.areaList.length > 0) {
                         this.searchForm.area = this.areaList[0].value
                         this.getList()
                     }
@@ -128,13 +127,15 @@ export default {
                 type: row.type,
                 unitType: row.unitType
             }
+            this.$message({
+                message: '正在导出，请稍后...',
+                type: 'success'
+            });
             getExportExcel(params).then(res => {
-                const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
-                this.downloadFile(res.data, decodeURIComponent(fileName))
-                this.$message({
-                    message: '正在导出，请稍后...',
-                    type: 'success'
-                });
+                // const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
+                // this.downloadFile(res, decodeURIComponent(fileName))
+                const fileName = `${row.unitName}_${Date.now()}.xlsx`
+                this.downloadFile(res, fileName)
             }).catch(err => {
                 this.$message.error('导出失败，请稍后再试！')
             })
@@ -144,13 +145,15 @@ export default {
                 this.$message.error('导出失败，请选择需要导出数据的单位!')
                 return
             }
+            this.$message({
+                message: '正在导出，请稍后...',
+                type: 'success'
+            });
             getExportZip(this.multipleSelection).then(res => {
-                const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
-                this.downloadFile(res.data, decodeURIComponent(fileName))
-                this.$message({
-                    message: '正在导出，请稍后...',
-                    type: 'success'
-                });
+                // const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
+                // this.downloadFile(res, decodeURIComponent(fileName))
+                const fileName = `数据填报调查_${Date.now()}.zip`
+                this.downloadFile(res, fileName)
             }).catch(err => {
                 this.$message.error('导出失败，请稍后再试！')
             })
@@ -390,7 +393,7 @@ export default {
         },
         reset() {
             this.searchForm.area = ''
-            if(this.areaList.length > 0) {
+            if (this.areaList.length > 0) {
                 this.searchForm.area = this.areaList[0].value
             }
             this.multipleSelection = []
