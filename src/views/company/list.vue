@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="select-btn">
-            <el-button type="success" size="mini">批量导出</el-button>
+            <el-button type="success" size="mini" @click="downloadZip">批量导出</el-button>
         </div>
         <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55" />
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { getReporteParty, getTableList, getExportExcel } from '@/api/company'
+import { getReporteParty, getTableList, getExportExcel, getExportZip } from '@/api/company'
 export default {
     name: 'Questionnaire',
     data() {
@@ -89,7 +89,6 @@ export default {
     },
     created() {
         this.getReporteList()
-        this.getList()
     },
     methods: {
         getReporteList() {
@@ -98,12 +97,16 @@ export default {
                     this.areaList = res.rows.map(item => {
                         return { label: item, value: item }
                     })
-                    this.areaList.unshift({ label: '全部', value: '' })
+                    if(this.areaList.length > 0) {
+                        this.searchForm.area = this.areaList[0].value
+                        this.getList()
+                    }
+                    // this.areaList.unshift({ label: '全部', value: '' })
                 }
             })
         },
         getList() {
-            let data = {
+            const params = {
                 area: this.searchForm.area,
                 unitName: this.searchForm.unitName,
                 page: {
@@ -111,7 +114,7 @@ export default {
                     pageSize: this.page.pageSize
                 }
             }
-            getTableList(data).then(res => {
+            getTableList(params).then(res => {
                 if (res && res.rows) {
                     this.tableData = res.rows
                     this.page.total = res.total
@@ -128,6 +131,28 @@ export default {
             getExportExcel(params).then(res => {
                 const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
                 this.downloadFile(res.data, decodeURIComponent(fileName))
+                this.$message({
+                    message: '正在导出，请稍后...',
+                    type: 'success'
+                });
+            }).catch(err => {
+                this.$message.error('导出失败，请稍后再试！')
+            })
+        },
+        downloadZip() {
+            if (!this.multipleSelection || this.multipleSelection.length === 0) {
+                this.$message.error('导出失败，请选择需要导出数据的单位!')
+                return
+            }
+            getExportZip(this.multipleSelection).then(res => {
+                const fileName = res.headers['content-disposition'].split('filename=')[1].split(';')[0].replace(/"/g, '')
+                this.downloadFile(res.data, decodeURIComponent(fileName))
+                this.$message({
+                    message: '正在导出，请稍后...',
+                    type: 'success'
+                });
+            }).catch(err => {
+                this.$message.error('导出失败，请稍后再试！')
             })
         },
         handleSizeChange(val) {
@@ -365,6 +390,10 @@ export default {
         },
         reset() {
             this.searchForm.area = ''
+            if(this.areaList.length > 0) {
+                this.searchForm.area = this.areaList[0].value
+            }
+            this.multipleSelection = []
             this.searchForm.unitName = ''
             this.page.pageNo = 1
             this.page.pageSize = 10

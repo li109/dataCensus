@@ -25,15 +25,16 @@ export function getExportExcel(data) {
     url: 'dataFillingSurvey/exportExcel',
     method: 'post',
     data,
-    // responseType: 'blob'
+    responseType: 'blob'
   })
 }
 // 批量导出
 export function getExportZip(data) {
-  return request({
+  return newRequest({
     url: 'dataFillingSurvey/exportZip',
     method: 'post',
-    data
+    data,
+    responseType: 'blob'
   })
 }
 
