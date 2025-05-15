@@ -10,6 +10,13 @@
                     </el-select>
                 </div>
                 <div class="item">
+                    <span class="text">企业分类:</span>
+                    <el-select v-model="searchForm.companyType" size="mini" placeholder="请选择企业分类" style="width: 200px;">
+                        <el-option v-for="item of companyTypeList" :index="item.label" :label="item.label"
+                            :value="item.value" />
+                    </el-select>
+                </div>
+                <div class="item">
                     <span class="text">单位名称:</span>
                     <el-input v-model="searchForm.unitName" size="mini" placeholder="请输入单位名称" style="width: 200px;"
                         clearable />
@@ -50,7 +57,8 @@ export default {
         return {
             searchForm: {
                 area: '',
-                unitName: ''
+                unitName: '',
+                companyType: ''
             },
             multipleSelection: [],
             areaList: [
@@ -67,6 +75,12 @@ export default {
                 // { label: '坪山区', value: '坪山区' },
                 // { label: '大鹏新区', value: '大鹏新区' },
                 // { label: '深汕特别合作区', value: '深汕特别合作区' },
+            ],
+            companyTypeList: [
+                { label: '全部', value: '' },
+                { label: '数据应用方', value: '数据应用方' },
+                { label: '数据服务方', value: '数据服务方' },
+                { label: '数据应用方、数据服务方', value: '数据应用方、数据服务方' },
             ],
             tableData: [
                 // { unitName: '市直单位', area: '深圳市', createTime: '2023-10-01 16:06:08', unitType: '市级单位' },
@@ -108,6 +122,7 @@ export default {
             const params = {
                 area: this.searchForm.area,
                 unitName: this.searchForm.unitName,
+                companyType: this.searchForm.companyType,
                 page: {
                     pageNo: this.page.pageNo,
                     pageSize: this.page.pageSize
@@ -395,6 +410,9 @@ export default {
             this.searchForm.area = ''
             if (this.areaList.length > 0) {
                 this.searchForm.area = this.areaList[0].value
+            }
+            if (this.companyTypeList.length > 0) {
+                this.searchForm.companyType = this.companyTypeList[0].value
             }
             this.multipleSelection = []
             this.searchForm.unitName = ''
